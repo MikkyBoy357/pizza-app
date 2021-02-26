@@ -121,6 +121,7 @@ class _DetailsScreenState extends State<DetailsScreen> {
               description: '${widget.description}',
               rating: '4.5',
               id: widget.price,
+              price: widget.price,
             ),
           ),
           // Padding(

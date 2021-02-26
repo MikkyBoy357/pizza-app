@@ -8,6 +8,7 @@ class TrendingItem extends StatefulWidget {
   final String description;
   final String rating;
   final double id;
+  final double price;
 
   TrendingItem({
     Key key,
@@ -16,6 +17,7 @@ class TrendingItem extends StatefulWidget {
     @required this.description,
     @required this.rating,
     this.id,
+    this.price,
   }) : super(key: key);
 
   @override
@@ -41,7 +43,7 @@ class _TrendingItemState extends State<TrendingItem> {
               Stack(
                 children: <Widget>[
                   Container(
-                    height: MediaQuery.of(context).size.height / 3.5,
+                    height: MediaQuery.of(context).size.height / 3.7,
                     width: MediaQuery.of(context).size.width,
                     child: CircleAvatar(
                       backgroundColor: Colors.transparent,
@@ -126,13 +128,30 @@ class _TrendingItemState extends State<TrendingItem> {
               ),
               SizedBox(height: 7.0),
               Padding(
-                padding: EdgeInsets.only(left: 15.0),
+                padding: const EdgeInsets.symmetric(horizontal: 15.0),
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.end,
+                  children: [
+                    Text(
+                      "\$${widget.price}",
+                      style: TextStyle(
+                        color: Colors.green[700],
+                        fontSize: SizeConfig.textSize(24),
+                        fontWeight: FontWeight.w800,
+                      ),
+                      textAlign: TextAlign.left,
+                    ),
+                  ],
+                ),
+              ),
+              Padding(
+                padding: EdgeInsets.symmetric(horizontal: 15.0),
                 child: Container(
                   width: MediaQuery.of(context).size.width,
                   child: Text(
                     "${widget.title}",
                     style: TextStyle(
-                      fontSize: SizeConfig.textSize(29),
+                      fontSize: SizeConfig.textSize(24),
                       fontWeight: FontWeight.w800,
                     ),
                     textAlign: TextAlign.left,
