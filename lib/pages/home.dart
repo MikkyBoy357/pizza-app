@@ -10,7 +10,6 @@ class Home extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     SizeConfig().init(context);
-    print(MediaQuery.of(context).size.height * 0.00066964285);
     return Scaffold(
       appBar: AppBar(
         title: Text('Instant Pizza'),
@@ -91,11 +90,10 @@ class Home extends StatelessWidget {
                 endIndent: SizeConfig.width(38),
                 thickness: 1,
               ),
-              Container(
-                // color: Colors.red,
-                height: 200 * 3.2 + 320,
-                width: MediaQuery.of(context).size.width / 1.07,
+              Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 15.0),
                 child: GridView.builder(
+                  shrinkWrap: true,
                   itemCount: pizzas.length,
                   physics: NeverScrollableScrollPhysics(),
                   gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
