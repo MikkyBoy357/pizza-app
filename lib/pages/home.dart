@@ -106,6 +106,7 @@ class Home extends StatelessWidget {
                     return StreamBuilder(
                       stream: FirebaseFirestore.instance
                           .collection('pizzas')
+                          .orderBy('name')
                           .snapshots(),
                       // ignore: missing_return
                       builder: (context, snapshot) {
