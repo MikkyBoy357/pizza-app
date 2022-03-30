@@ -5,8 +5,8 @@ class SizeConfig {
   // static keyword included so you can call this method without instantiating an object of it like so :
   // SizeConfig.height(context, 2)
 
-  static BuildContext appContext;
-  static MediaQueryData _mediaQueryData;
+  static BuildContext? appContext;
+  static MediaQueryData? _mediaQueryData;
 
   void init(BuildContext context) {
     _mediaQueryData = MediaQuery.of(context);
@@ -14,17 +14,17 @@ class SizeConfig {
   }
 
   static double height(double height) {
-    double screenHeight = _mediaQueryData.size.height / 900;
+    double screenHeight = _mediaQueryData!.size.height / 900;
     return height * screenHeight;
   }
 
   static double width(double width) {
-    double screenWidth = _mediaQueryData.size.width / 400;
+    double screenWidth = _mediaQueryData!.size.width / 400;
     return width * screenWidth;
   }
 
   static double textSize(double textSize) {
-    double screenWidth = _mediaQueryData.size.width / 400;
+    double screenWidth = _mediaQueryData!.size.width / 400;
     return textSize * screenWidth;
   }
 }

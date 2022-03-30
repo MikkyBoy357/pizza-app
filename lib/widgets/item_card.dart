@@ -1,24 +1,28 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:mycoolpizzaapp/models/pizza.dart';
+import 'package:mycoolpizzaapp/models/pizza.dart';
+import 'package:mycoolpizzaapp/providers/cart_provider.dart';
 import 'package:mycoolpizzaapp/widgets/size_config.dart';
+import 'package:provider/provider.dart';
 
 class ItemCard extends StatelessWidget {
   final Pizza pizza;
-  final int index;
-  final Function onPressed;
-  // fields
-  final String name;
-  final String image;
-  final String description;
-  final double price;
+  // final int index;
+  final VoidCallback? onPressed;
+  // // fields
+  // final String name;
+  // final String image;
+  // final String description;
+  // final double price;
   const ItemCard({
     this.onPressed,
-    this.pizza,
-    this.index,
-    this.name,
-    this.image,
-    this.description,
-    this.price,
+    required this.pizza,
+    // required this.index,
+    // required this.name,
+    // required this.image,
+    // required this.description,
+    // required this.price,
   });
 
   @override
@@ -69,19 +73,22 @@ class ItemCard extends StatelessWidget {
                                         crossAxisAlignment:
                                             CrossAxisAlignment.start,
                                         children: [
-                                          Text(
-                                            'Tomato Pizza',
-                                            style: TextStyle(
-                                              fontSize: SizeConfig.textSize(17),
-                                            ),
+                                          SizedBox(
+                                            height: 20,
                                           ),
-                                          Text(
-                                            'Pizza with tomatoes',
-                                            style: TextStyle(
-                                              fontSize: SizeConfig.textSize(14),
-                                              color: Colors.grey[700],
-                                            ),
-                                          ),
+                                          // Text(
+                                          //   'Tomato Pizza',
+                                          //   style: TextStyle(
+                                          //     fontSize: SizeConfig.textSize(17),
+                                          //   ),
+                                          // ),
+                                          // Text(
+                                          //   'Pizza with tomatoes',
+                                          //   style: TextStyle(
+                                          //     fontSize: SizeConfig.textSize(14),
+                                          //     color: Colors.grey[700],
+                                          //   ),
+                                          // ),
                                         ],
                                       ),
                                     ),
@@ -92,7 +99,7 @@ class ItemCard extends StatelessWidget {
                                             CrossAxisAlignment.start,
                                         children: [
                                           Text(
-                                            name,
+                                            pizza.name!,
                                             style: TextStyle(
                                               fontWeight: FontWeight.w500,
                                               fontSize:
@@ -100,7 +107,8 @@ class ItemCard extends StatelessWidget {
                                             ),
                                           ),
                                           Text(
-                                            description,
+                                            pizza.description!,
+                                            maxLines: 1,
                                             style: TextStyle(
                                               fontSize:
                                                   SizeConfig.textSize(14.5),
@@ -112,7 +120,7 @@ class ItemCard extends StatelessWidget {
                                                 MainAxisAlignment.spaceBetween,
                                             children: [
                                               Text(
-                                                '\$${price.toString()}',
+                                                '\$${pizza.price.toString()}',
                                                 style: TextStyle(
                                                   fontWeight: FontWeight.bold,
                                                   fontSize: 17,
@@ -121,6 +129,10 @@ class ItemCard extends StatelessWidget {
                                               GestureDetector(
                                                 onTap: () {
                                                   print('add to cart');
+                                                  Provider.of<CartProvider>(
+                                                          context,
+                                                          listen: false)
+                                                      .addPizzaToCart(pizza);
                                                 },
                                                 child: Container(
                                                   height: SizeConfig.width(47),
@@ -156,10 +168,14 @@ class ItemCard extends StatelessWidget {
                       ),
                     ),
                     Hero(
-                      tag: pizza.image,
+                      tag: pizza.pizzaId!,
                       child: CircleAvatar(
                         radius: MediaQuery.of(context).size.width / 4.6,
-                        backgroundImage: NetworkImage(image),
+                        // foregroundImage: NetworkImage(image),
+                        foregroundImage:
+                            CachedNetworkImageProvider(pizza.image!),
+                        backgroundImage:
+                            AssetImage('assets/images/pizza_bg.png'),
                         backgroundColor: Colors.transparent,
                       ),
                     ),

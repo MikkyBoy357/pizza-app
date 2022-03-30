@@ -1,23 +1,23 @@
 import 'package:flutter/material.dart';
-import 'package:mycoolpizzaapp/pages/pizza_view.dart';
+import 'package:mycoolpizzaapp/view/pizza_view.dart';
 import 'package:mycoolpizzaapp/widgets/size_config.dart';
 
 class TrendingItem extends StatefulWidget {
   final String img;
   final String title;
   final String description;
-  final String rating;
+  final double? rating;
   final double id;
   final double price;
 
   TrendingItem({
-    Key key,
-    @required this.img,
-    @required this.title,
-    @required this.description,
-    @required this.rating,
-    this.id,
-    this.price,
+    Key? key,
+    required this.img,
+    required this.title,
+    required this.description,
+    required this.rating,
+    required this.id,
+    required this.price,
   }) : super(key: key);
 
   @override
@@ -27,7 +27,7 @@ class TrendingItem extends StatefulWidget {
 class _TrendingItemState extends State<TrendingItem> {
   @override
   Widget build(BuildContext context) {
-    print(widget.description);
+    // print(widget.description);
     return Padding(
       padding: EdgeInsets.only(top: 5.0, bottom: 5.0),
       child: Container(

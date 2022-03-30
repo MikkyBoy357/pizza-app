@@ -19,7 +19,7 @@ class _FirebaseHomeState extends State<FirebaseHome> {
       body: StreamBuilder(
         stream: FirebaseFirestore.instance.collection('pizzas').snapshots(),
         // ignore: missing_return
-        builder: (context, snapshot) {
+        builder: (context, AsyncSnapshot snapshot) {
           if (!snapshot.hasData) return Text('Loading data... Please Wait...');
           return Column(
             children: [

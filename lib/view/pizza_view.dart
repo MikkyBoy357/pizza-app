@@ -7,10 +7,10 @@ class PizzaView extends StatelessWidget {
   final String title;
 
   const PizzaView({
-    Key key,
-    this.img,
-    this.id,
-    this.title,
+    Key? key,
+    required this.img,
+    required this.id,
+    required this.title,
   }) : super(key: key);
   @override
   Widget build(BuildContext context) {

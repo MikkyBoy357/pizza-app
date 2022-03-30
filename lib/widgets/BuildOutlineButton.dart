@@ -2,11 +2,11 @@ import 'package:flutter/material.dart';
 
 class BuildOutlineButton extends StatelessWidget {
   final IconData icon;
-  final Function onPressed;
+  final VoidCallback? onPressed;
 
   const BuildOutlineButton({
-    Key key,
-    this.icon,
+    Key? key,
+    required this.icon,
     this.onPressed,
   }) : super(key: key);
   @override

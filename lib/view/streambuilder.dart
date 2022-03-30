@@ -15,9 +15,9 @@ class StreamGridWrapper extends StatelessWidget {
   final EdgeInsets padding;
 
   const StreamGridWrapper({
-    Key key,
-    @required this.stream,
-    @required this.itemBuilder,
+    Key? key,
+    required this.stream,
+    required this.itemBuilder,
     this.scrollDirection = Axis.vertical,
     this.shrinkWrap = false,
     this.physics = const ClampingScrollPhysics(),
@@ -28,9 +28,9 @@ class StreamGridWrapper extends StatelessWidget {
   Widget build(BuildContext context) {
     return StreamBuilder(
       stream: stream,
-      builder: (context, snapshot) {
+      builder: (context, AsyncSnapshot snapshot) {
         if (snapshot.hasData) {
-          var list = snapshot.data.documents.toList();
+          var list = snapshot.data!.docs.toList();
           return list.length == 0
               ? Container(
                   child: Center(
